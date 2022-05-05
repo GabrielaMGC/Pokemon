@@ -1,10 +1,17 @@
+@import url('https://fonts.googleapis.com/css2?family=Varela+Round&display=swap');
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
+  'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+  sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-image: linear-gradient(to right, rgb(0, 70, 14),rgb(142, 255, 176),rgb(0, 70, 14));
+
 }
 
 code {
@@ -112,4 +119,11 @@ h3 {
   padding: 0.5rem 1.5rem;
   min-width: 50%;
   margin-top: 1rem;
+}
+
+.letra-logo{
+  font-size: 48px;
+  text-align: center;
+  color: rgb(0, 0, 0);
+  font-family: 'Varela Round', sans-serif;
 }

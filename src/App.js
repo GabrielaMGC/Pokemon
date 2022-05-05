@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import './App.css';
+import styled from 'styled-components'
+import pokebola from './images/pokebola.png'
 
 function App() {
   const [allPokemons,setAllPokemons] = useState([])
@@ -29,10 +31,11 @@ function App() {
 
   return(
     <div className="App-content">
-      <h1>Pokemon Evolution</h1>
+      <h1 className='letra-logo'>P<Pokebola src={pokebola}/>kemon Evolution</h1>
       <div className='pokemon-container'>
       <div className='all-container'>
       </div>
+      <p className=''></p>
       <button className='load-more'>Load More</button>
       </div>
     </div>
@@ -40,3 +43,9 @@ function App() {
 }
 
 export default App;
+
+
+const Pokebola = styled.img`
+    width:40px;
+    height:40px;
+`;
