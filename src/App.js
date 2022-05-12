@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react';
 import './App.css';
 import styled from 'styled-components'
 import pokebola from './images/pokebola.png'
+import {WiCloudRefresh} from 'react-icons/wi'
+import {CgReorder} from 'react-icons/cg'
 
 function App() {
   const [allPokemons,setAllPokemons] = useState([])
@@ -31,12 +33,15 @@ function App() {
 
   return(
     <div className="App-content">
-      <h1 className='letra-logo'>P<Pokebola src={pokebola}/>kemon Evolution</h1>
+      <div className='container'>
+        <p>P</p> <Pokebola src={pokebola}/> <p>kemon</p>
+      </div>
       <div className='pokemon-container'>
       <div className='all-container'>
       </div>
       <p className=''></p>
-      <button className='load-more'>Load More</button>
+      <Button id="carregar"><WiCloudRefresh size={75}/></Button>
+      <Button id="organizar"><CgReorder size={75}/></Button>
       </div>
     </div>
   );
@@ -48,4 +53,11 @@ export default App;
 const Pokebola = styled.img`
     width:40px;
     height:40px;
+`;
+
+const Button = styled.button`
+  font-size: 20px;
+  color: #A0D9D9;
+  background-color: rgb(#A0D9D9);
+  border-radius: 20px;
 `;
