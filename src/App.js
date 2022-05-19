@@ -4,32 +4,33 @@ import styled from 'styled-components'
 import pokebola from './images/pokebola.png'
 import {WiCloudRefresh} from 'react-icons/wi'
 import {CgReorder} from 'react-icons/cg'
+import CartaPokemon from './components/cartaPokemon';
 
 function App() {
-  const [allPokemons,setAllPokemons] = useState([])
-  const [loadMore,setLoadMore] =useState('https://pokeapi.co/api/v2/pokemon?limit=20')
+  const [allPokemons,setAllPokemons]= useState([]);
+  const [carregar,setCarregar]=useState('https://pokeapi.co/api/v2/pokemon?limit=20');
+  
+  const getAllPokemons = async () => {
+    const res = await fetch(carregar)
+    const data = await res.json()
 
-  const getAllPokemons = async()=>{
-    const res =await fetch(loadMore)
-    const data = res.json()
-    setLoadMore(data.next)
-    console.log(data)
-    
-    function createPokemonObject(result){
-        result.array.forEach(async (pokemon) => {
-          const res = await fetch(`https://pokeapi.co/api/v2/pokemon/${pokemon.name}`)
-          const data = res.json()
+    setCarregar(data.next)
 
-          setAllPokemons(currentList =>[...currentList,data])
-        });
+    function createPokemonObject(results)  {
+      results.forEach( async pokemon => {
+        const res = await fetch(`https://pokeapi.co/api/v2/pokemon/${pokemon.name}`)
+        const data =  await res.json()
+        setAllPokemons( currentList => [...currentList, data])
+        await allPokemons.sort((a, b) => a.id - b.id)
+        console.log(data)
+      })
     }
-    createPokemonObject(data.result)
-    await console.log(allPokemons)
+    createPokemonObject(data.results)
   }
 
-  useEffect(()=>{
-    getAllPokemons()
-  },[])
+ useEffect(() => {
+  getAllPokemons()
+ }, [])
 
   return(
     <div className="App-content">
@@ -40,7 +41,15 @@ function App() {
       <div className='all-container'>
       </div>
       <p className=''></p>
-      <Button id="carregar"><WiCloudRefresh size={75}/></Button>
+      {allPokemons.map(pokemon=>
+        <CartaPokemon
+          id={pokemon.id}
+          name={pokemon.name}
+          image={pokemon.sprites.other.dream_world.front_default}
+          type={pokemon.types[0].type.name}
+        />
+        )}
+      <Button id="carregar" onClick={()=>getAllPokemons()}><WiCloudRefresh size={75}/></Button>
       <Button id="organizar"><CgReorder size={75}/></Button>
       </div>
     </div>

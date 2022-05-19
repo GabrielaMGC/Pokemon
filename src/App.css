@@ -41,13 +41,13 @@ body {
 }
 
 #carregar{
-  position: absolute;
+  position: fixed;
   bottom: 0;
   right: 0;
 }
 
 #organizar{
-  position: absolute;
+  position: fixed;
   bottom: 0;
   right: 75px;
 }
